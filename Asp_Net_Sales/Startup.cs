@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Asp_Net_Sales.Models;
 
 namespace Asp_Net_Sales
 {
@@ -33,6 +35,9 @@ namespace Asp_Net_Sales
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<Asp_Net_SalesContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Asp_Net_SalesContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
